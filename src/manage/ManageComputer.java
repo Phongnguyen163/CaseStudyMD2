@@ -2,14 +2,13 @@ package manage;
 
 import file.FileComputerCSV;
 import model.Computer;
-
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ManageComputer implements GeneralManage<Computer>{
     List<Computer> computerList;
 
-    public ManageComputer() throws IOException {
+    public ManageComputer() throws FileNotFoundException {
         computerList = FileComputerCSV.readFromFile();
     }
 

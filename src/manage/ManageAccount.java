@@ -3,7 +3,7 @@ package manage;
 import file.FileAccountCSV;
 import model.Account;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ManageAccount implements GeneralManage <Account>{
@@ -11,7 +11,7 @@ public class ManageAccount implements GeneralManage <Account>{
 
     public static Account currentAccount = null;
 
-    public ManageAccount() throws IOException {
+    public ManageAccount() throws FileNotFoundException {
         accountList = FileAccountCSV.readFromFile();
     }
 

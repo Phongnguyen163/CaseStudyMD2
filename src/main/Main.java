@@ -18,9 +18,9 @@ public class Main {
         ManageAccount manageAccount = new ManageAccount();
         int choice = -1;
         while (choice != 0) {
-            System.out.println("Menu");
-            System.out.println("1. Đăng nhập!");
-            System.out.println("2. Đăng ký!");
+            System.out.println(">>>>>>>>Menu<<<<<<<<<");
+            System.out.println("----1. Đăng nhập!----");
+            System.out.println("-----2. Đăng ký!-----");
             System.out.println("Nhập vào lựa chọn!");
             choice = sc.nextInt();
             switch (choice) {
@@ -33,19 +33,19 @@ public class Main {
                     if (manageAccount.login(usn, pass) == 1) {
                         int choice1 = -1;
                         while (choice1 != 0) {
-                            System.out.println("Menu Customer");
-                            System.out.println("1. Xem thông tin\n"+
-                                                "2. Đổi pass\n"+
-                                                "3. Hiển thị danh sách máy có trong quán\n" +
-                                                "4. Thêm 1 máy mới vào danh sách\n" +
-                                                "5. Sửa đổi thông tin của máy.\n" +
-                                                "6. Xóa 1 máy khỏi danh sách.\n" +
-                                                "7. Thêm dịch vụ\n" +
-                                                "8. Chỉnh sửa tính tiền theo giờ\n" +
-                                                "9. Tính Tiền\n" +
-                                                "10. Quản lý tài khoản đăng nhập\n" +
-                                                "11. Doanh Thu\n"+
-                                                "0. Log out\n");
+                            System.out.println(">>>>>>>>>>>>>>>>>Menu Customer<<<<<<<<<<<<<<<<<<");
+                            System.out.println("--------------1. Xem thông tin----------------\n"+
+                                               "-----------------2. Đổi pass------------------\n"+
+                                               "----3.Hiển thị danh sách máy có trong quán----\n"+
+                                               "-------4. Thêm 1 máy mới vào danh sách--------\n"+
+                                               "--------5. Sửa đổi thông tin của máy.---------\n"+
+                                               "---------6. Xóa 1 máy khỏi danh sách.---------\n"+
+                                               "---------------7. Thêm dịch vụ----------------\n"+
+                                               "--------8. Chỉnh sửa tính tiền theo giờ-------\n"+
+                                               "------------------9. Tính Tiền----------------\n"+
+                                               "--------10. Quản lý tài khoản đăng nhập-------\n"+
+                                               "-----------------11. Doanh Thu----------------\n"+
+                                               "------------------0. Log out------------------\n");
                             System.out.println("Nhập vào lựa chọn!");
                             choice1 = sc.nextInt();
                             switch (choice1) {
