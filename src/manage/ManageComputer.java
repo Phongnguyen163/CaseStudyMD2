@@ -1,12 +1,21 @@
 package manage;
 
+import file.FileComputerCSV;
 import model.Computer;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 public class ManageComputer implements GeneralManage<Computer>{
-    List<Computer> computerList = new ArrayList<>();
+    List<Computer> computerList;
+
+    public ManageComputer() throws IOException {
+        computerList = FileComputerCSV.readFromFile();
+    }
+
+    public List<Computer> getComputerList() {
+        return computerList;
+    }
 
     public void payment() {
 

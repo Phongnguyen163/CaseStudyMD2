@@ -3,16 +3,15 @@ package manage;
 import file.FileAccountCSV;
 import model.Account;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 public class ManageAccount implements GeneralManage <Account>{
-    List<Account> accountList = new ArrayList<>();
+    List<Account> accountList;
 
     public static Account currentAccount = null;
 
-    public ManageAccount() throws FileNotFoundException {
+    public ManageAccount() throws IOException {
         accountList = FileAccountCSV.readFromFile();
     }
 
@@ -29,11 +28,6 @@ public class ManageAccount implements GeneralManage <Account>{
     public List<Account> getAccountList() {
         return accountList;
     }
-
-    public void setUserList(List<Account> accountList) {
-        this.accountList = accountList;
-    }
-
 
     @Override
     public int findById(int id) {
