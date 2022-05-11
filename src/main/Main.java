@@ -19,11 +19,13 @@ public class Main {
         ManageComputer manageComputer = new ManageComputer();
         ManageAccount manageAccount = new ManageAccount();
         ManageService manageService = new ManageService();
-        int choice = -1;
-        while (choice != 0) {
+        int choice;
+        while (true) {
             System.out.println(">>>>>>>>Menu<<<<<<<<<");
-            System.out.println("----1. Đăng nhập!----");
-            System.out.println("-----2. Đăng ký!-----");
+            System.out.println("|   1. Đăng nhập!   |");
+            System.out.println("|    2. Đăng ký!    |");
+            System.out.println("|     0. Thoát      |");
+            System.out.println("---------------------");
             System.out.println("Nhập vào lựa chọn!");
             choice = sc.nextInt();
             switch (choice) {
@@ -34,20 +36,23 @@ public class Main {
                     System.out.println("Nhập vào pass: ");
                     String pass = scanner.nextLine();
                     if (manageAccount.login(usn, pass) == 1) {
+                        System.out.println("Đăng nhập thành công!");
+                        System.out.println("--------------------------------------------------------");
                         int choice1 = -1;
                         while (choice1 != 0) {
                             System.out.println(">>>>>>>>>>>>>>>>>Menu Customer<<<<<<<<<<<<<<<<<<");
-                            System.out.println("---------------1. Xem thông tin-----------------\n"+
-                                               "------------------2. Đổi pass-------------------\n"+
-                                               "-----3.Hiển thị danh sách máy có trong quán-----\n"+
-                                               "--------4. Thêm 1 máy mới vào danh sách---------\n"+
-                                               "---------5. Sửa đổi thông tin của máy-----------\n"+
-                                               "----------6. Xóa 1 máy khỏi danh sách-----------\n"+
-                                               "--------------------7. Mở máy-------------------\n"+
-                                               "----------------8. Thêm dịch vụ-----------------\n"+
-                                               "-------------------9. Tính Tiền-----------------\n"+
-                                               "-----------10. Xóa tài khoản đăng nhập----------\n"+
-                                               "-------------------0. Log out-------------------\n");
+                            System.out.println("|              1. Xem thông tin                |\n"+
+                                               "|                 2. Đổi pass                  |\n"+
+                                               "|    3.Hiển thị danh sách máy có trong quán    |\n"+
+                                               "|       4. Thêm 1 máy mới vào danh sách        |\n"+
+                                               "|        5. Sửa đổi thông tin của máy          |\n"+
+                                               "|         6. Xóa 1 máy khỏi danh sách          |\n"+
+                                               "|                   7. Mở máy                  |\n"+
+                                               "|               8. Thêm dịch vụ                |\n"+
+                                               "|                  9. Tính Tiền                |\n"+
+                                               "|          10. Xóa tài khoản đăng nhập         |\n"+
+                                               "|                  0. Log out                  |\n"+
+                                               "------------------------------------------------");
                             System.out.println("Nhập vào lựa chọn!");
                             choice1 = sc.nextInt();
                             switch (choice1) {
@@ -63,6 +68,13 @@ public class Main {
                                     break;
                                 case 3:
                                     manageComputer.print();
+                                    System.out.print("Bạn có muốn xem chi tiết máy không (y/n): ");
+                                    String check = scanner.nextLine().toLowerCase();
+                                    if(check.equals("y")) {
+                                        System.out.println("Nhập id máy muốn xem: ");
+                                        int choice2 = sc.nextInt();
+                                        manageComputer.getComputerList().get(manageComputer.findById(choice2)).showDetail();
+                                    }
                                     break;
                                 case 4:
                                     System.out.println("Nhập id máy muốn thêm: ");
@@ -173,7 +185,12 @@ public class Main {
                                         System.out.println("Máy chưa mở!");
                                     }
                                     else {
-                                        manageComputer.paymentService(idPayment);
+                                        float price = manageComputer.payment(idPayment);
+                                        System.out.println("Gía chơi: "+ price);
+                                        System.out.println(manageComputer.getComputerList().get(manageComputer.findById(idPayment)).getOrderList());
+                                        System.out.println("Gía dịch vụ: " + manageComputer.paymentService(idPayment));
+                                        float totalPrice = manageComputer.paymentService(idPayment)+ price;
+                                        System.out.println("Tổng: " + totalPrice );
                                     }
                                     break;
                                 case 10:
@@ -209,6 +226,8 @@ public class Main {
                     manageAccount.add(account);
                     FileAccountCSV.writeToFile(manageAccount.getAccountList());
                     System.out.println("Đăng kí thành công!");
+                case 0:
+                    System.exit(0);
             }
         }
     }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Computer {
     private int id;
+    private String name;
     private String status = "Disable";
     private int price;
     LocalDateTime timeStart;
@@ -19,9 +20,10 @@ public class Computer {
     public Computer(){
     }
 
-    public Computer(int id, String status,int price) {
+    public Computer(int id, String name, int price) {
         this.id = id;
-        this.status = status;
+        this.name = name;
+        this.price = price;
     }
 
     public int getPrice() {
@@ -66,17 +68,18 @@ public class Computer {
 
     @Override
     public String toString() {
-        return id + ","+ status +","+ price+ "\n";
+        return id + ","+ name +","+ price+ "\n";
     }
 
 
-    public String showDetail() {
-        return "Computer{" +
+    public void showDetail() {
+        System.out.println("Computer{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
                 ", price=" + price +
                 ", timeStart=" + timeStart +
                 ", timeClose=" + timeClose +
-                '}';
+                '}');
     }
 }
