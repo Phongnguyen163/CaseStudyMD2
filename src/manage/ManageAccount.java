@@ -29,6 +29,15 @@ public class ManageAccount implements GeneralManage <Account>{
         return accountList;
     }
 
+    public int findByUsername(String name) {
+        for (int i = 0; i < accountList.size(); i++) {
+            if (accountList.get(i).getUsername().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     @Override
     public int findById(int id) {
         for (int i = 0; i < accountList.size(); i++) {

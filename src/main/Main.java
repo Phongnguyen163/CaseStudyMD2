@@ -35,6 +35,7 @@ public class Main {
                     break;
                 case 2:
                     registerAccount(scanner, sc, manageAccount);
+                    break;
                 case 0:
                     System.exit(0);
             }
@@ -53,18 +54,18 @@ public class Main {
             int choice1 = -1;
             while (choice1 != 0) {
                 System.out.println(">>>>>>>>>>>>>>>>>Menu Customer<<<<<<<<<<<<<<<<<<");
-                System.out.println("|              1. Xem thông tin                |\n"+
-                                   "|                 2. Đổi pass                  |\n"+
-                                   "|    3.Hiển thị danh sách máy có trong quán    |\n"+
-                                   "|       4. Thêm 1 máy mới vào danh sách        |\n"+
-                                   "|        5. Sửa đổi thông tin của máy          |\n"+
-                                   "|         6. Xóa 1 máy khỏi danh sách          |\n"+
-                                   "|                   7. Mở máy                  |\n"+
-                                   "|               8. Thêm dịch vụ                |\n"+
-                                   "|                  9. Tính Tiền                |\n"+
-                                   "|          10. Xóa tài khoản đăng nhập         |\n"+
-                                   "|                  0. Log out                  |\n"+
-                                   "------------------------------------------------");
+                System.out.println("|              1. Xem thông tin                |\n" +
+                        "|                 2. Đổi pass                  |\n" +
+                        "|    3.Hiển thị danh sách máy có trong quán    |\n" +
+                        "|       4. Thêm 1 máy mới vào danh sách        |\n" +
+                        "|        5. Sửa đổi thông tin của máy          |\n" +
+                        "|         6. Xóa 1 máy khỏi danh sách          |\n" +
+                        "|                   7. Mở máy                  |\n" +
+                        "|               8. Thêm dịch vụ                |\n" +
+                        "|                  9. Tính Tiền                |\n" +
+                        "|          10. Xóa tài khoản đăng nhập         |\n" +
+                        "|                  0. Log out                  |\n" +
+                        "------------------------------------------------");
                 System.out.println("Nhập vào lựa chọn!");
                 choice1 = sc.nextInt();
                 switch (choice1) {
@@ -103,8 +104,7 @@ public class Main {
                         break;
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("Tài khoản hoặc mật khẩu không đúng!");
         }
     }
@@ -120,7 +120,7 @@ public class Main {
         manageComputer.print();
         System.out.print("Bạn có muốn xem chi tiết máy không (y/n): ");
         String check = scanner.nextLine().toLowerCase();
-        if(check.equals("y")) {
+        if (check.equals("y")) {
             System.out.println("Nhập id máy muốn xem: ");
             int choice2 = sc.nextInt();
             manageComputer.getComputerList().get(manageComputer.findById(choice2)).showDetail();
@@ -130,7 +130,7 @@ public class Main {
     private static void addComputer(Scanner scanner, Scanner sc, ManageComputer manageComputer) throws FileNotFoundException {
         System.out.println("Nhập id máy muốn thêm: ");
         int idAdd = sc.nextInt();
-        if(manageComputer.findById(idAdd) == -1) {
+        if (manageComputer.findById(idAdd) == -1) {
             System.out.println("Nhập tên máy muốn thêm: ");
             String name = scanner.nextLine();
             System.out.println("Nhập giá máy muốn thêm: ");
@@ -138,8 +138,7 @@ public class Main {
             manageComputer.add(new Computer(idAdd, name, price));
             FileComputerCSV.writeToFile(manageComputer.getComputerList());
             System.out.println("Thêm thành công!");
-        }
-        else {
+        } else {
             System.out.println("Máy đã có trong danh sách. Không thể thêm!");
         }
     }
@@ -147,7 +146,7 @@ public class Main {
     private static void updateComputer(Scanner scanner, Scanner sc, ManageComputer manageComputer) throws FileNotFoundException {
         System.out.println("Nhập id máy muốn sửa: ");
         int idUpdate = sc.nextInt();
-        if(manageComputer.findById(idUpdate) != -1) {
+        if (manageComputer.findById(idUpdate) != -1) {
             System.out.println("Nhập tên máy muốn sửa: ");
             String statusUpdate = scanner.nextLine();
             System.out.println("Nhập giá máy muốn sửa: ");
@@ -155,8 +154,7 @@ public class Main {
             manageComputer.edit(new Computer(idUpdate, statusUpdate, priceUpdate), idUpdate);
             FileComputerCSV.writeToFile(manageComputer.getComputerList());
             System.out.println("Sửa thành công!");
-        }
-        else {
+        } else {
             System.out.println("Máy không có trong danh sách. Không thể sửa!");
         }
     }
@@ -164,12 +162,11 @@ public class Main {
     private static void deleteComputer(Scanner sc, ManageComputer manageComputer) throws FileNotFoundException {
         System.out.println("Nhập id máy muốn xóa: ");
         int idDelete = sc.nextInt();
-        if(manageComputer.findById(idDelete) != -1) {
+        if (manageComputer.findById(idDelete) != -1) {
             manageComputer.deleteById(idDelete);
             FileComputerCSV.writeToFile(manageComputer.getComputerList());
             System.out.println("Xoá thành công!");
-        }
-        else {
+        } else {
             System.out.println("Máy không có trong danh sách. Không thể xóa!");
         }
     }
@@ -180,13 +177,11 @@ public class Main {
         if (manageComputer.findById(idOpen) != -1) {
             if (manageComputer.getComputerList().get(manageComputer.findById(idOpen)).getStatus().equals("Enable")) {
                 System.out.println("Máy đã mở!");
-            }
-            else {
+            } else {
                 manageComputer.open(idOpen);
                 System.out.println("Đã mở!");
             }
-        }
-        else {
+        } else {
             System.out.println("Máy không có trong danh sách!");
         }
     }
@@ -194,7 +189,7 @@ public class Main {
     private static void addService(Scanner sc, ManageComputer manageComputer, ManageService manageService) {
         System.out.println("Nhập id máy muốn thêm dịch vụ: ");
         int idOrder = sc.nextInt();
-        if(manageComputer.findById(idOrder) != -1) {
+        if (manageComputer.findById(idOrder) != -1) {
             if (manageComputer.getComputerList().get(manageComputer.findById(idOrder)).getStatus().equals("Enable")) {
                 System.out.println(">>>>>>>>>>Menu<<<<<<<<<");
                 for (int i = 0; i < manageService.getServiceList().size(); i++) {
@@ -211,7 +206,7 @@ public class Main {
                     do {
                         quantity = sc.nextInt();
                         if (quantity <= manageService.getServiceList().get(manageService.findById(choice3)).getQuantity()) {
-                            manageComputer.order(idOrder, new Service(manageComputer.getComputerList().get(manageComputer.findById(idOrder)).getOrderList().size()+1,
+                            manageComputer.order(idOrder, new Service(manageComputer.getComputerList().get(manageComputer.findById(idOrder)).getOrderList().size() + 1,
                                     manageService.getServiceList().get(manageService.findById(choice3)).getName(),
                                     manageService.getServiceList().get(manageService.findById(choice3)).getPrice(), quantity));
                             System.out.println("Thêm thành công!");
@@ -221,12 +216,10 @@ public class Main {
                     }
                     while (quantity >= manageService.getServiceList().get(manageService.findById(choice3)).getQuantity());
                 }
-            }
-            else {
+            } else {
                 System.out.println("Máy chưa mở!");
             }
-        }
-        else {
+        } else {
             System.out.println("Máy không có trong danh sách. Không thể thêm!");
         }
     }
@@ -236,30 +229,26 @@ public class Main {
         int idPayment = sc.nextInt();
         if (manageComputer.findById(idPayment) == -1) {
             System.out.println("Máy không có");
-        }
-        else if (manageComputer.getComputerList().get(manageComputer.findById(idPayment)).getStatus().equals("Disable")) {
+        } else if (manageComputer.getComputerList().get(manageComputer.findById(idPayment)).getStatus().equals("Disable")) {
             System.out.println("Máy chưa mở!");
-        }
-        else {
+        } else {
             float price = manageComputer.computerPayment(idPayment);
-            System.out.println("Gía chơi: "+ price);
+            System.out.println("Gía chơi: " + price);
             int priceService = manageComputer.servicePayment(idPayment);
             System.out.println("Gía dịch vụ: " + priceService);
             float totalPrice = priceService + price;
-            System.out.println("Tổng: " + totalPrice );
+            System.out.println("Tổng: " + totalPrice);
         }
     }
 
     private static void deleteAccount(Scanner sc, ManageAccount manageAccount) throws FileNotFoundException {
         System.out.println("Nhập id của tài khoản cần xóa: ");
         int idAccount = sc.nextInt();
-        if(manageAccount.findById(idAccount) == -1) {
+        if (manageAccount.findById(idAccount) == -1) {
             System.out.println("Tài khoản không tồn tại!");
-        }
-        else if(idAccount == ManageAccount.currentAccount.getId()) {
+        } else if (idAccount == ManageAccount.currentAccount.getId()) {
             System.out.println("Tài khoản đang đăng nhập không thể xóa!");
-        }
-        else {
+        } else {
             manageAccount.deleteById(idAccount);
             System.out.println("Xoá thành công!");
             FileAccountCSV.writeToFile(manageAccount.getAccountList());
@@ -268,15 +257,33 @@ public class Main {
 
     private static void registerAccount(Scanner scanner, Scanner sc, ManageAccount manageAccount) throws FileNotFoundException {
         System.out.println("Đăng Ký");
-        System.out.println("Nhập vào id: ");
-        int id = sc.nextInt();
-        System.out.println("Nhập vào usn: ");
-        String username = scanner.nextLine();
-        System.out.println("Nhập vào pass: ");
-        String password = scanner.nextLine();
-        Account account = new Account(id, username, password);
-        manageAccount.add(account);
-        FileAccountCSV.writeToFile(manageAccount.getAccountList());
-        System.out.println("Đăng kí thành công!");
+        boolean check = false;
+        do {
+            System.out.println("Nhập vào id: ");
+            int id = sc.nextInt();
+            if (manageAccount.findById(id) != -1) {
+                System.out.println("ID đã tồn tại!");
+                check = true;
+            }
+            else {
+                do {
+                    System.out.println("Nhập vào usn: ");
+                    String username = scanner.nextLine();
+                    if (manageAccount.findByUsername(username) != -1) {
+                        System.out.println("Username đã tồn tại!");
+                    } else {
+                        check = false;
+                        System.out.println("Nhập vào pass: ");
+                        String password = scanner.nextLine();
+                        Account account = new Account(id, username, password);
+                        manageAccount.add(account);
+                        FileAccountCSV.writeToFile(manageAccount.getAccountList());
+                        System.out.println("Đăng kí thành công!");
+                    }
+                }
+                while (check);
+            }
+        }
+        while (check);
     }
 }
