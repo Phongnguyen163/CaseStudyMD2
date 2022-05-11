@@ -21,13 +21,13 @@ public class ManageComputer implements GeneralManage<Computer>{
         return computerList;
     }
 
-    public void openComputer(int id) {
+    public void open(int id) {
         computerList.get(findById(id)).setStatus("Enable");
         LocalDateTime startTime = LocalDateTime.now();
         computerList.get(findById(id)).setTimeStart(startTime);
     }
 
-    public float payment(int id) {
+    public float computerPayment(int id) {
         computerList.get(findById(id)).setStatus("Disable");
         LocalDateTime closeTime = LocalDateTime.now();
         computerList.get(findById(id)).setTimeClose(closeTime);
@@ -37,15 +37,16 @@ public class ManageComputer implements GeneralManage<Computer>{
         LocalDateTime timePlus = localDateTime.plus(amount);
         String timeUse = timePlus.format(fmt);
         String[] arr = timeUse.split(":");
-        System.out.println("Số giờ đã chơi: " + (Integer.parseInt(arr[0])-1) +" Ngày" + (Integer.parseInt(arr[3]))+ " Giờ"+
-                Integer.parseInt(arr[4]) + " Phút" + Integer.parseInt(arr[5]) + " Giây");
+        System.out.println("Số giờ đã chơi: " + (Integer.parseInt(arr[0])-1) +" Ngày " + (Integer.parseInt(arr[3]))+ " Giờ "+
+                Integer.parseInt(arr[4]) + " Phút " + Integer.parseInt(arr[5]) + " Giây");
         return (Integer.parseInt(arr[0])-1)*86400*computerList.get(findById(id)).getPrice()+
                 Integer.parseInt(arr[3])*3600*computerList.get(findById(id)).getPrice()+
                 Integer.parseInt(arr[4])*60*computerList.get(findById(id)).getPrice()+
                 Integer.parseInt(arr[5])*computerList.get(findById(id)).getPrice();
     }
 
-    public int paymentService(int id) {
+    public int servicePayment(int id) {
+        System.out.println(computerList.get(findById(id)).getOrderList());
         int priceService = 0;
         for (int i = 0; i < computerList.get(findById(id)).getOrderList().size(); i++) {
             priceService += computerList.get(findById(id)).getOrderList().get(i).getPrice() *
