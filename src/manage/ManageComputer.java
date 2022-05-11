@@ -2,7 +2,12 @@ package manage;
 
 import file.FileComputerCSV;
 import model.Computer;
+import model.Service;
+
 import java.io.FileNotFoundException;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ManageComputer implements GeneralManage<Computer>{
@@ -16,8 +21,31 @@ public class ManageComputer implements GeneralManage<Computer>{
         return computerList;
     }
 
-    public void payment() {
+    public void openComputer(int id) {
+        computerList.get(findById(id)).setStatus("Enable");
+        LocalDateTime startTime = LocalDateTime.now();
+        computerList.get(findById(id)).setTimeStart(startTime);
+    }
 
+    public void payment(int id) {
+        computerList.get(findById(id)).setStatus("Disable");
+        LocalDateTime closeTime = LocalDateTime.now();
+        computerList.get(findById(id)).setTimeStart(closeTime);
+        String amount = String.valueOf(Duration.between(computerList.get(findById(id)).getTimeStart(), computerList.get(findById(id)).getTimeClose()));
+    }
+
+    public void paymentService(int id) {
+        System.out.println(computerList.get(findById(id)).getOrderList());
+        int priceService = 0;
+        for (int i = 0; i < computerList.get(findById(id)).getOrderList().size(); i++) {
+            priceService += computerList.get(findById(id)).getOrderList().get(i).getPrice()*
+                    computerList.get(findById(id)).getOrderList().get(i).getQuantity();
+        }
+        System.out.println("Gía dịch vụ: " + priceService);
+    }
+
+    public void order(int id, Service service) {
+        computerList.get(findById(id)).getOrderList().add(service);
     }
 
     public int findById(int id) {
@@ -26,7 +54,7 @@ public class ManageComputer implements GeneralManage<Computer>{
                 return i;
             }
         }
-        return 0;
+        return -1;
     }
 
     @Override

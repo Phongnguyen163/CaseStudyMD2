@@ -41,6 +41,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return id+","+ username + "," + password;
+        return id+","+ username + "," + password + "\n";
     }
 }

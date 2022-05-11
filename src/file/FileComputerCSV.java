@@ -12,7 +12,6 @@ public class FileComputerCSV {
         File computerFile = new File("computer.csv");
         List<Computer> computers = new ArrayList<>();
         Scanner scanner = new Scanner(computerFile);
-        scanner.nextLine();
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
             if (line.equals("")) {
@@ -27,8 +26,8 @@ public class FileComputerCSV {
     }
 
     public static void writeToFile(List<Computer> computerList) throws FileNotFoundException {
-        File accountFile = new File("computer.csv");
-        PrintWriter printWriter = new PrintWriter(accountFile);
+        File computerFile = new File("computer.csv");
+        PrintWriter printWriter = new PrintWriter(computerFile);
         for (Computer computer : computerList) {
             printWriter.print(computer);
         }

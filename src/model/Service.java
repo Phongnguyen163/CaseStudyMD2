@@ -50,11 +50,6 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                '}';
+        return id + "," + name + ","+ price + "," + quantity + "\n";
     }
 }

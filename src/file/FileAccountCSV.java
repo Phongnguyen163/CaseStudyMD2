@@ -11,7 +11,6 @@ public class FileAccountCSV {
         File accountFile = new File("account.csv");
         List<Account> accounts = new ArrayList<>();
         Scanner scanner = new Scanner(accountFile);
-        scanner.nextLine();
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
             if (line.equals("")) {

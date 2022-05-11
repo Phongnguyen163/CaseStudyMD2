@@ -1,12 +1,21 @@
 package manage;
 
+import file.FileServiceCSV;
 import model.Service;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ManageService implements GeneralManage<Service>{
-    List<Service> serviceList = new ArrayList<>();
+    List<Service> serviceList;
+
+    public ManageService() throws FileNotFoundException {
+        serviceList = FileServiceCSV.readFromFile();
+    }
+
+    public List<Service> getServiceList() {
+        return serviceList;
+    }
 
     public int findById(int id) {
         for (int i = 0; i < serviceList.size(); i++) {
@@ -14,7 +23,7 @@ public class ManageService implements GeneralManage<Service>{
                 return i;
             }
         }
-        return 0;
+        return -1;
     }
 
     @Override

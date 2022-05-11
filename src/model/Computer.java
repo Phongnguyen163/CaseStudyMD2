@@ -1,18 +1,22 @@
 package model;
 
-import manage.ManageService;
-
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Computer {
     private int id;
-    private String status;
+    private String status = "Disable";
     private int price;
     LocalDateTime timeStart;
     LocalDateTime timeClose;
-    ManageService manageService = new ManageService();
+    List<Service> orderList = new ArrayList<>();
 
-    public Computer() {
+    public List<Service> getOrderList() {
+        return orderList;
+    }
+
+    public Computer(){
     }
 
     public Computer(int id, String status,int price) {
@@ -62,9 +66,17 @@ public class Computer {
 
     @Override
     public String toString() {
+        return id + ","+ status +","+ price+ "\n";
+    }
+
+
+    public String showDetail() {
         return "Computer{" +
-                "Id=" + id +
+                "id=" + id +
                 ", status='" + status + '\'' +
+                ", price=" + price +
+                ", timeStart=" + timeStart +
+                ", timeClose=" + timeClose +
                 '}';
     }
 }
